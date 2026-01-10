@@ -295,6 +295,9 @@ function checkPress(color) {
     resetGame("Wrong move! Game over. Try again.");
     return;
   } 
+  if (remainingPresses === 0) {
+    checkRound();
+  } 
 }
 
 /**
@@ -312,7 +315,16 @@ function checkPress(color) {
  *
  */
 function checkRound() {
-  // TODO: Write your code here.
+  if (playerSequence.length === maxRoundCount) {
+    resetGame("Congratulations! You've won the game!");
+  } else {
+    roundCount += 1;
+    playerSequence = []; 
+    setText(statusSpan, "Nice! Keep going!");
+    setTimeout(() => {
+      playComputerTurn();
+    }, 1000); 
+  } 
 }
 
 /**
