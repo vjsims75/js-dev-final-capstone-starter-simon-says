@@ -51,7 +51,7 @@ describe("US-03: activatePad(color)", () => {
       return document.querySelector(".js-pad-red").classList;
     });
     expect(Object.values(initialClassList)).toContain("activated");
-    await page.waitForTimeout(1500);
+    await new Promise((resolve) => setTimeout(resolve, 1500));
     const classList = await page.evaluate(() => {
       return document.querySelector(".js-pad-red").classList;
     });
@@ -121,10 +121,10 @@ describe("US-03: playComputerTurn()", () => {
     await page.evaluate(() => {
       window.playComputerTurn();
     });
-    await page.waitForTimeout(1500);
+    await new Promise((resolve) => setTimeout(resolve, 1500));
     const status = await page.evaluate(() => {
       return document.querySelector(".js-status").textContent;
     });
-    expect(status).toMatch(/player/i);
+    expect(status).toMatch("Your turn! 1 presses left.");
   });
 });

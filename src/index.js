@@ -3,10 +3,9 @@
  */
 
  const startButton = document.querySelector(".js-start-button");
- // TODO: Add the missing query selectors:
- const statusSpan = document.querySelector(".js-status"); // Use querySelector() to get the status element
- const heading = document.querySelector(".js-heading"); // Use querySelector() to get the heading element
- const padContainer = document.querySelector(".js-pad-container"); // Use querySelector() to get the heading element
+ const statusSpan = document.querySelector(".js-status"); 
+ const heading = document.querySelector(".js-heading"); 
+ const padContainer = document.querySelector(".js-pad-container"); 
 
 /**
  * VARIABLES
@@ -30,7 +29,6 @@ let roundCount = 0; // track the number of rounds that have been played so far
  * Audio file for the yellow pad: "../assets/simon-says-sound-4.mp3"
  *
  */
-
  const pads = [
   {
     color: "red",
@@ -108,8 +106,9 @@ function startButtonHandler() {
 function padHandler(event) {
   const { color } = event.target.dataset;
   if (!color) return;
-
-  // TODO: Write your code here.
+  const pad = pads.find((pad) => pad.color === color);
+  pad.sound.play();
+  checkPress(color);
   return color;
 }
 
@@ -171,7 +170,7 @@ function getRandomItem(collection) {
  * Sets the status text of a given HTML element with a given a message
  */
 function setText(element, text) {
-  // TODO: Write your code here.
+  element.textContent = text;
   return element;
 }
 
@@ -187,9 +186,13 @@ function setText(element, text) {
  *
  * 4. After 500ms, remove the `"activated"` class from the pad
  */
-
 function activatePad(color) {
-  // TODO: Write your code here.
+  const pad = pads.find((pad) => pad.color === color);
+  pad.selector.classList.add("activated");
+  //TODO: pad.sound.play();
+  setTimeout(() => {
+    pad.selector.classList.remove("activated");
+  }, 500);
 }
 
 /**
@@ -205,9 +208,12 @@ function activatePad(color) {
  * to change on each iteration. The first button in the sequence is activated after 600ms,
  * the next one after 1200ms (600ms after the first), the third one after 1800ms, and so on.
  */
-
 function activatePads(sequence) {
-  // TODO: Write your code here.
+  sequence.forEach((color, index) => {
+    setTimeout(() => {
+      activatePad(color);
+    }, (index + 1) * 600); 
+  });
 }
 
 /**
@@ -234,9 +240,15 @@ function activatePads(sequence) {
  * sequence.
  */
  function playComputerTurn() {
-  // TODO: Write your code here.
-
-  setTimeout(() => playHumanTurn(roundCount), roundCount * 600 + 1000); // 5
+  padContainer.classList.add("unclickable");
+  setText(statusSpan, "The computer's turn...");
+  setText(heading, `Round ${roundCount} of ${maxRoundCount}`);
+  const randomPad = getRandomItem(pads);
+  computerSequence.push(randomPad.color);
+  activatePads(computerSequence);
+  setTimeout(() => {
+    playHumanTurn(roundCount);
+  }, roundCount * 600 ); 
 }
 
 /**
@@ -247,7 +259,9 @@ function activatePads(sequence) {
  * 2. Display a status message showing the player how many presses are left in the round
  */
 function playHumanTurn() {
-  // TODO: Write your code here.
+  padContainer.classList.remove("unclickable");
+  const remainingPresses = computerSequence.length - playerSequence.length;
+  setText(statusSpan, `Your turn! ${remainingPresses} presses left.`);
 }
 
 /**
@@ -273,7 +287,14 @@ function playHumanTurn() {
  *
  */
 function checkPress(color) {
-  // TODO: Write your code here.
+  playerSequence.push(color);
+  const index = playerSequence.length - 1;
+  const remainingPresses = computerSequence.length - playerSequence.length;
+  setText(statusSpan, `Your turn! ${remainingPresses} presses left.`);  
+  if (computerSequence[index] !== playerSequence[index]) {
+    resetGame("Wrong move! Game over. Try again.");
+    return;
+  } 
 }
 
 /**
@@ -290,7 +311,6 @@ function checkPress(color) {
  * all because it will get overwritten.
  *
  */
-
 function checkRound() {
   // TODO: Write your code here.
 }
