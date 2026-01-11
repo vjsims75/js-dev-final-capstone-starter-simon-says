@@ -190,7 +190,7 @@ function setText(element, text) {
 function activatePad(color) {
   const pad = pads.find((pad) => pad.color === color);
   pad.selector.classList.add("activated");
-  //TODO: pad.sound.play();
+  pad.sound.play();
   setTimeout(() => {
     pad.selector.classList.remove("activated");
   }, 500);
