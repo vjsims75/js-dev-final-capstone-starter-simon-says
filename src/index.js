@@ -14,6 +14,7 @@ let computerSequence = []; // track the computer-generated sequence of pad press
 let playerSequence = []; // track the player-generated sequence of pad presses
 let maxRoundCount = 0; // the max number of rounds, varies with the chosen level
 let roundCount = 0; // track the number of rounds that have been played so far
+let curLevel = 1; // the level of the game, from 1 to 4
 
 /**
  *
@@ -78,7 +79,7 @@ startButton.addEventListener("click", startButtonHandler);
  *
  */
 function startButtonHandler() {
-  maxRoundCount = setLevel();
+  maxRoundCount = setLevel(curLevel);
   roundCount = 1;
   startButton.classList.add("hidden");
   statusSpan.classList.remove("hidden");
@@ -337,14 +338,16 @@ function checkRound() {
  * 3. Reset `roundCount` to an empty array
  */
 function resetGame(text) {
-  // TODO: Write your code here.
 
-  // Uncomment the code below:
-  // alert(text);
-  // setText(heading, "Simon Says");
-  // startButton.classList.remove("hidden");
-  // statusSpan.classList.add("hidden");
-  // padContainer.classList.add("unclickable");
+  computerSequence = [];
+  playerSequence = [];
+  roundCount = 0;
+
+  alert(text);
+  setText(heading, "Simon Says");
+  startButton.classList.remove("hidden");
+  statusSpan.classList.add("hidden");
+  padContainer.classList.add("unclickable");
 }
 
 /**
