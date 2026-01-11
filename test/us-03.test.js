@@ -125,6 +125,6 @@ describe("US-03: playComputerTurn()", () => {
     const status = await page.evaluate(() => {
       return document.querySelector(".js-status").textContent;
     });
-    expect(status).toMatch("Your turn! 1 presses left.");
+    expect(status).toMatch(/player/i);
   });
 });

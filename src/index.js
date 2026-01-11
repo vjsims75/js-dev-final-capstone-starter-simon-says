@@ -293,7 +293,8 @@ function checkPress(color) {
   const remainingPresses = computerSequence.length - playerSequence.length;
   setText(statusSpan, `Your turn! ${remainingPresses} presses left.`);  
   if (computerSequence[index] !== playerSequence[index]) {
-    resetGame("Wrong move! Game over. Try again.");
+    curLevel = 1;
+    resetGame("Wrong move! Game over. Try again.");    
     return;
   } 
   if (remainingPresses === 0) {
@@ -317,7 +318,8 @@ function checkPress(color) {
  */
 function checkRound() {
   if (playerSequence.length === maxRoundCount) {
-    resetGame("Congratulations! You've won the game!");
+    curLevel = curLevel < 4 ? curLevel + 1 : 4;
+    resetGame("Congratulations! You've won the game!");    
   } else {
     roundCount += 1;
     playerSequence = []; 
@@ -344,7 +346,7 @@ function resetGame(text) {
   roundCount = 0;
 
   alert(text);
-  setText(heading, "Simon Says");
+  setText(heading, `Simon Says - Level ${curLevel}`);
   startButton.classList.remove("hidden");
   statusSpan.classList.add("hidden");
   padContainer.classList.add("unclickable");

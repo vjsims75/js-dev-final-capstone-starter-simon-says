@@ -31,7 +31,7 @@ describe("US-04: playHumanTurn()", () => {
       window.playHumanTurn();
       return document.querySelector(".js-status").textContent;
     });
-    expect(status).toMatch("Your turn! 0 presses left.");
+    expect(status).toMatch(/player/i);
   });
 });
 

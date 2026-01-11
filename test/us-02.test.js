@@ -61,7 +61,7 @@ describe("US-02: startButtonHandler()", () => {
     const startButtonHandler = await page.evaluate(() => {
       return window.startButtonHandler.toString();
     });
-    expect(startButtonHandler).toContain("setLevel()");
+    expect(startButtonHandler).toContain("setLevel(");
   });
 
   it("should call `playComputerTurn()`", async () => {
