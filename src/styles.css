@@ -1,5 +1,163 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Microbe&display=swap');
 
+/* Define variables for classic mode */
+[data-theme="classic"] {
+  main {
+  background-color: black;
+  }
+  .pad-red {
+    background-color: red;
+  }
+  .pad-red:hover,
+  .pad-red:focus {
+    background-color: #ff451a;
+  }
+
+  .pad-red:active,
+  .pad-red.activated {
+    background-color: #ff5c36;
+  }
+  .pad-green {
+    background-color: green;
+  }   
+  .pad-green:hover,
+  .pad-green:focus {
+    background-color: #8cc218;
+  }
+
+  .pad-green:active,
+  .pad-green.activated {
+    background-color: #a0ea00;
+  }
+  .pad-blue {
+    background-color: blue;
+  }
+  .pad-blue:hover,
+  .pad-blue:focus {
+    background-color: #139ddd;
+  }
+  .pad-blue:active,
+  .pad-blue.activated {
+    background-color: #2bbcff;
+  }
+  .pad-yellow {
+    background-color: yellow;
+  }
+  .pad-yellow:hover,
+  .pad-yellow:focus {
+    background-color: #ffb900;
+  }
+  .pad-yellow:active,
+  .pad-yellow.activated {
+    background-color: #ffca3d;
+  }
+}
+
+/* Define variables for light mode */
+[data-theme="light"] {
+  main {
+    background-color: #dfdddd;
+  }
+  .pad-red {
+    background-color: lightpink;
+  }
+  .pad-red:hover,
+  .pad-red:focus {
+    background-color: lightsalmon;
+  }
+
+  .pad-red:active,
+  .pad-red.activated {
+    background-color: lightcoral;
+  }
+  .pad-green {
+    background-color: lightgreen;
+  }   
+  .pad-green:hover,
+  .pad-green:focus {
+    background-color: #68eb68;
+  }
+
+  .pad-green:active,
+  .pad-green.activated {
+    background-color: limegreen;
+  }
+  .pad-blue {
+    background-color: lightblue;
+  }
+  .pad-blue:hover,
+  .pad-blue:focus {
+    background-color: lightskyblue;
+  }
+  .pad-blue:active,
+  .pad-blue.activated {
+    background-color: rgb(163, 253, 253);
+  }
+  .pad-yellow {
+    background-color: lightyellow;
+  }
+  .pad-yellow:hover,
+  .pad-yellow:focus {
+    background-color: palegoldenrod;
+  }
+  .pad-yellow:active,
+  .pad-yellow.activated {
+    background-color: #f9f9a5;
+  }
+}
+/* Define variables for darl mode */
+[data-theme="dark"] {
+  main {
+    background-color: black;
+  }
+  .pad-red {
+    background-color: darkred;
+  }
+  .pad-red:hover,
+  .pad-red:focus {
+    background-color: darksalmon;
+  }
+
+  .pad-red:active,
+  .pad-red.activated {
+    background-color: brown;
+  }
+  .pad-green {
+    background-color: darkgreen;
+  }   
+  .pad-green:hover,
+  .pad-green:focus {
+    background-color: darkseagreen;
+  }
+
+  .pad-green:active,
+  .pad-green.activated {
+    background-color: darkolivegreen;
+  }
+  .pad-blue {
+    background-color: darkblue;
+  }
+  .pad-blue:hover,
+  .pad-blue:focus {
+    background-color: darkturquoise;
+  }
+  .pad-blue:active,
+  .pad-blue.activated {
+    background-color: darkcyan;
+  }
+  .pad-yellow {
+    background-color: #9b9b03;
+  }
+  .pad-yellow:hover,
+  .pad-yellow:focus {
+    background-color: #bdc82b;
+  }
+  .pad-yellow:active,
+  .pad-yellow.activated {
+    background-color: #d9db5f;
+  }
+}
+
 html {
   background: url('../assets/background.png') no-repeat center center fixed;
   box-sizing: border-box;
@@ -11,7 +169,7 @@ html {
 }
 
 body {
-  color: yellow;
+  color: rosybrown;
   font-family: 'Rubik Microbe', sans-serif;
   display: flex;
   justify-content: center;
@@ -20,7 +178,6 @@ body {
 }
 
 main {
-  background-color: #000;
   padding: 40px;
 }
 
@@ -33,20 +190,22 @@ h1 {
   text-align: center;
 }
 
+.theme-button,
 .start-button {
   display: inline-block;
   height: 38px;
   padding: 0 30px;
-  color: yellow;
+  color: rosybrown;
   text-align: center;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 800;
   text-transform: uppercase;
   background-color: transparent;
-  border: 1px solid yellow;
+  border: 3px solid rosybrown;
   cursor: pointer;
 }
 
+.theme-button:hover,
 .start-button:hover {
   color: greenyellow;
   font-size: 18px;
@@ -56,6 +215,7 @@ h1 {
 
 .status {
   font-size: 22px;
+  font-weight: 600;
 }
 
 .pad-container {

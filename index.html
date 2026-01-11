@@ -10,7 +10,7 @@
     <!-- favicon.png provided by: 
      <a href="https://www.flaticon.com/free-icons/simon" title="simon icons">Simon icons created by Freepik - Flaticon</a> -->
   </head>
-  <body>
+  <body class="js-body-container" data-theme="classic">
     <main>
 
       <h1 id="title" class="js-heading">Simon Says - Level 1</h1>
@@ -25,6 +25,10 @@
         <div id="padGreen" class="pad pad-green js-pad-green" data-color="green"></div>
         <div id="padBlue" class="pad pad-blue js-pad-blue" data-color="blue"></div>
         <div id="padYellow" class="pad pad-yellow js-pad-yellow" data-color="yellow"></div>
+      </section>
+
+      <section class="game-controls">
+        <button id="btnTheme" class="theme-button js-theme-button">Classic</button>
       </section>
     </main>
     <script src="./src/index.js"></script>

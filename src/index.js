@@ -3,9 +3,11 @@
  */
 
  const startButton = document.querySelector(".js-start-button");
+ const themeButton = document.querySelector(".js-theme-button");
  const statusSpan = document.querySelector(".js-status"); 
  const heading = document.querySelector(".js-heading"); 
  const padContainer = document.querySelector(".js-pad-container"); 
+ const bodyContainer = document.querySelector(".js-body-container");
 
 /**
  * VARIABLES
@@ -25,6 +27,7 @@ let curLevel = 1; // the level of the game, from 1 to 4
  * - The `selector` property is set to the DOM selector for the pad.
  * - The `sound` property is set to an audio file using the Audio() constructor.
  *
+ * Audio file for the red pad: "../assets/simon-says-sound-1.mp3"
  * Audio file for the green pad: "../assets/simon-says-sound-2.mp3"
  * Audio file for the blue pad: "../assets/simon-says-sound-3.mp3"
  * Audio file for the yellow pad: "../assets/simon-says-sound-4.mp3"
@@ -59,6 +62,7 @@ let curLevel = 1; // the level of the game, from 1 to 4
 
 padContainer.addEventListener("click", padHandler);
 startButton.addEventListener("click", startButtonHandler);
+themeButton.addEventListener("click", themeButtonHandler);
 
 /**
  * EVENT HANDLERS
@@ -113,6 +117,47 @@ function padHandler(event) {
   return color;
 }
 
+/**
+ * Called when one of the theme button is clicked.
+ *
+ * 1. rotate through themes: classic -> light -> dark -> classic
+ *
+ * 2. update the `data-theme` attribute on the `bodyContainer` element
+ * 
+ * 3. update the text on the theme button to reflect the current theme
+ */
+function themeButtonHandler() {
+  let targetTheme = "classic";
+
+  console.log(bodyContainer.getAttribute('data-theme'));
+
+  // Determine the target theme based on the current theme
+  switch (bodyContainer.getAttribute('data-theme')) {
+    case "classic":
+      targetTheme = "light";  
+      break;
+    case "light":
+      targetTheme = "dark";
+      break;
+    case "dark":
+      targetTheme = "classic";
+      break;
+  }
+
+  console.log(targetTheme);
+
+  // Set the attribute 'data-theme' to the targetTheme
+  bodyContainer.setAttribute('data-theme', targetTheme);
+
+  console.log(bodyContainer.getAttribute('data-theme'));
+
+  // Update the button text
+  setText(themeButton, targetTheme);
+  
+  console.log(themeButton.textContent);
+
+  return targetTheme;
+}
 /**
  * HELPER FUNCTIONS
  */
